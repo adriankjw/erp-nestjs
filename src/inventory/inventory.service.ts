@@ -40,7 +40,7 @@ export class InventoryService {
     return items.reduce((sum, i) => sum + i.quantity, 0);
   }
 
-  private async getOrCreateStockItem(productId: string, warehouseId: string): Promise<StockItem> {
+  async getOrCreateStockItem(productId: string, warehouseId: string): Promise<StockItem> {
     let item = await this.stockItemRepo.findOne({
       where: { product: { id: productId }, warehouse: { id: warehouseId } },
     });

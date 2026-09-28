@@ -6,9 +6,10 @@ import { StockMovement } from './stock-movement.entity';
 import { InventoryService } from './inventory.service';
 import { InventoryController } from './inventory.controller';
 import { ProductsModule } from '../products/products.module';
+import { forwardRef } from '@nestjs/common';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Warehouse, StockItem, StockMovement]), ProductsModule],
+  imports: [TypeOrmModule.forFeature([Warehouse, StockItem, StockMovement]), forwardRef(() => ProductsModule)],
   controllers: [InventoryController],
   providers: [InventoryService],
   exports: [InventoryService, TypeOrmModule],
